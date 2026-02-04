@@ -1,0 +1,222 @@
+@charset "UTF-8";
+
+dt{
+    font-style: italic;
+    font-size: 0.95em;
+    background-color: #d8d6d6;
+}
+dl{
+    padding-bottom: 1%;
+    background-color: #f0f0f0;
+    border-bottom: dotted;
+    border-width: 1px;
+}
+.parts{
+   background-color: #EEEEEE;
+   margin: 20px 0px;
+   padding: 10px 0px;
+}
+.parts table{
+    margin: 0 auto;
+    border: 1px solid;
+    table-layout: fixed;
+}
+.parts table th{
+    font-style: oblique;
+    font-size: 1.1em;
+    text-align: center;
+    color: #EEEEEE;
+    text-shadow: 1px 1px 3px #424142;
+    background: linear-gradient(to bottom,#777777,#555555);
+}
+.parts .other{
+     margin-left: auto;
+     margin-right: auto;
+     margin-bottom: 30px;
+}
+.parts .other th{
+    width: 235px;
+}
+.parts .other td{
+    width: 250px;
+    font-size: 1.1em;
+    padding-left: 15px;
+}
+/*背景色を交互に変える*/
+ .other tr:nth-child(odd) td {  
+  background-color: #dcdcdc;  
+}
+.other tr:nth-child(even) td {  
+  background-color: white;  
+}
+.parts .img{
+    margin: 0 auto;
+    border: none;
+    text-align: center;
+}
+.parts .img th{
+      width: 50%;
+}
+.parts .img td{
+    width: 250px;
+    height: 187px;
+}
+.parts .img2{
+    display: inline;
+    border: none;
+    text-align: center;
+    margin-left: 30px;
+}
+.parts .img2 th{
+  width: 70%;
+}
+.parts .img2 td{
+    width: 250px;
+    height: 187px;
+}
+
+.info{
+    margin-top: 30px;
+    clear: both;
+}
+.submit {
+  background: #3deb60;
+  background-image: -webkit-linear-gradient(top, #3deb60, #009628);
+  background-image: -moz-linear-gradient(top, #3deb60, #009628);
+  background-image: -ms-linear-gradient(top, #3deb60, #009628);
+  background-image: -o-linear-gradient(top, #3deb60, #009628);
+  background-image: linear-gradient(to bottom, #11FFFF, #005FFF);
+  border-radius: 5px;
+  text-shadow: 1px 1px 3px #424142;
+  color: #ffffff;
+  font-size: 1.1em;
+  padding: 13px 30px 13px 30px;
+  text-decoration: none;
+  display: block;
+  margin: 10px auto 20px auto;
+}
+.submit:hover {
+  background: #61eb2f;
+  background-image: -webkit-linear-gradient(top, #61eb2f, #22bf32);
+  background-image: -moz-linear-gradient(top, #61eb2f, #22bf32);
+  background-image: -ms-linear-gradient(top, #61eb2f, #22bf32);
+  background-image: -o-linear-gradient(top, #61eb2f, #22bf32);
+  background-image: linear-gradient(to bottom, #66FFFF, #4689FF);
+  text-decoration: none;
+}
+.partsbox{
+  clear: both;
+  display: block;   
+  margin: 0 auto;   
+  width: 97%
+}
+#upbox{
+  margin: 0 30px;
+}
+.innerimg a{
+  margin: 0 auto;
+}
+.innerimg span{
+  display: block;
+  width:250px;
+}
+.parts .upimg{
+  border: none;
+  margin-bottom: 15px;
+  display: inline;
+}
+.innerimg {
+  float: left;
+  margin: 5px 0 0 42px;
+}
+.innerimg img{
+  max-width: 200px;
+}
+.img span{
+  color:red;
+  font-size: 0.85em;
+}
+/* dlタグに対して幅と中央寄せを設定 */
+dl.toucmt {
+    width: 50% !important;     /* 幅を半分に強制 */
+    margin-left: auto !important;
+    margin-right: auto !important;
+    border-left: none;         /* もし左側に赤い線などがある場合はこれで見栄えを調整 */
+}
+
+/* 中の画像も枠からはみ出さないように調整 */
+dl.toucmt img.builimg {
+    max-width: 100% !important;
+    height: auto !important;
+}
+.builcmt {
+    /* 2. 長い英数字などが枠を突き抜けないよう、端で強制的に折る */
+    word-break: break-all !important;
+}
+
+@media screen and (max-width: 480px) {
+    .partsbox label{
+      display:block;
+    }
+    .menu .user {
+      clear: both;
+    }
+    .parts table{
+        font-size: 0.9em;
+    }
+    form{
+      margin-left: -4px;
+    }
+    .parts .other{
+      text-align: center;
+      margin: 10px 0px;
+      width: 369px;
+    }
+
+    .parts .other th{ 
+      width: 100px;
+    }
+    .parts .other td{
+      display: block;
+      width: 90%;
+    }
+    .submit{
+    margin: 20px 80px;
+    padding: 13px 70px;
+    }
+    .parts .img{
+      display: inline;
+    }
+    .parts .upimg th{
+      width: 356px;
+    }
+    .parts .img2{
+      margin: 3px;
+    }
+    .parts .img2 th{
+      width: 350px;
+    }
+    .innerimg{
+      margin-left: 20%;
+    }
+    .img2box{
+      text-align:center;
+    }
+    #upbox{
+      margin: 0;
+    }
+    .toucmt{
+      margin-top: 10px;
+    }
+  }
+@media screen and (max-width: 768px) {
+    dl.toucmt, 
+    .toucmt {
+        width: 100% !important;     /* 画面幅いっぱいにする */
+        max-width: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
+    }
+}

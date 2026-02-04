@@ -1,0 +1,813 @@
+@charset "UTF-8";
+
+/**{ border: dotted 1px #FF6600;}*/
+
+html{
+    height: 100%;
+}
+body{
+    font-family: Verdana, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, sans-serif;
+/*    background-image: url(../img/html/metal.jpg);*/
+
+/*ハンバーガーメニューを押すと表示が狂う！！*/
+/*    position: relative;*/
+
+
+    background-size: cover;
+    height: 100%;
+}
+#contener {
+    width: 100%;            /* 1300px固定を100%に変更 */
+    max-width: 1300px;      /* 最大幅を1300pxに制限 */
+    margin: 0 auto;
+    min-width: 1000px;      /* PC表示の最小幅を維持 */
+}
+#header{
+    background-color: white;
+    height: 95px;
+}
+#search{
+    float: right;
+    margin-right: 50px;
+    margin-top: 50px;
+}
+
+/*進撃デザイン
+#rogoimg{
+    width: 420px;
+    height: 83px;
+    margin: 8px 0px 0px 20px;
+}
+進撃デザイン*/
+
+/*リペアハウスロゴデザイン*/
+/*#rogoimg{
+    width: 300px;
+    height: 77px;
+    margin: 8px 0px 0px 5px;
+}*/
+/*リペアハウスロゴデザイン*/
+
+/*団地検索ロゴデザイン*/
+#rogoimg{
+    width: 205px;
+    height: 74px;
+    margin: 8px 0px 0px 10px;
+}
+/*団地検索ロゴデザイン*/
+
+.menu{
+    padding: 0px 50% 39px 50%;
+    margin: 20px -50% 0 -50%;
+    width: 100%;
+    margin-bottom: 40px;
+    clear: both;
+    background: linear-gradient(#8b8b8b, #a4a4a4);
+    border-top: 2px solid red;
+}
+#footer {
+    font-size: small;
+    text-align: center;
+    clear: both;
+    border-top: 4px solid #0000FF;
+    padding: 10px 0;        /* 左右の50%を0に */
+    margin: 35px 0 0 0;     /* 左右の-50%を0に */
+    width: 100%;
+}
+/*メニューバーデザイン*/
+/* --- 修正版：メニューバーデザイン（78行目〜） --- */
+#menu {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  border-top: solid 4px #0000FF; /* 上の青い線 */
+  display: flex;                /* 横並びを完全に制御 */
+  background: #8b8b8b;          /* 背景の隙間を埋める */
+  box-sizing: border-box;       /* 線の太さを幅に含める */
+}
+
+#menu li {
+  flex: 1;                      /* 全項目を均等な幅にする */
+  position: relative;
+  margin: 0;
+  padding: 0;
+  display: flex;                /* 中のリンクの高さを揃える */
+}
+
+#menu li a {
+  display: flex;                /* 文字を上下左右中央に配置 */
+  align-items: center;          /* 垂直中央 */
+  justify-content: center;      /* 水平中央 */
+  width: 100%;
+  min-height: 40px;             /* 高さを一定に固定 */
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-shadow: 0 1px 2px #333;
+  padding: 5px 10px;            /* 内側の余白を統一 */
+  text-decoration: none;
+  background: linear-gradient(#8b8b8b, #969595);
+  border-left: 1px solid #ababab;
+  border-bottom: 1px solid #777; /* 下のラインも追加して高さを揃える */
+  box-sizing: border-box;       /* ズレ防止の重要設定 */
+}
+
+/* --- アニメーション対応版：ドロップダウン --- */
+/* ここから書き換え */
+ul.child {
+  display: block;               /* アニメーションを効かせるためblockに固定 */
+  visibility: hidden;           /* 通常時は隠す */
+  opacity: 0;                   /* 透明にする */
+  position: absolute;
+  top: 115%;                    /* 少し下から開始（ニョキっとさせる予備動作） */
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background: #969595;
+  border: 1px solid #ababab;
+  transition: all 0.3s ease;    /* 0.3秒かけて変化させる（ニョキっと動く時間） */
+  pointer-events: none;         /* 隠れている間はクリック不可にする */
+}
+
+
+/* --- 矢印（iタグ）の動きの設定 --- */
+#menu li a i {
+  margin-left: 10px;
+  font-size: 0.8em;
+  display: inline-block;      /* 回転させるために必須 */
+  transition: transform 0.3s; /* 「くるっ」と動く時間を設定 */
+}
+
+/* マウスを乗せた時に矢印を180度回転させる */
+#menu li:hover a i {
+  transform: rotate(180deg);
+  color: #FFCC00;             /* 回転時に色をオレンジに変える（目印） */
+}
+/* --- 追加ここまで --- */
+
+/* 親メニューにマウスを乗せた時 */
+#menu li:hover ul.child {
+  visibility: visible;
+  opacity: 1;
+  top: 100%;                    /* 本来の位置（下端）にスッと上がる */
+  pointer-events: auto;         /* 操作を有効にする */
+}
+
+/* 子メニューの中のリンク */
+#menu li ul.child li a {
+  border-left: none;
+  border-top: 1px solid #ababab;
+  padding: 10px;
+  justify-content: flex-start;  /* 子メニューは文字を左寄せにする */
+}
+/* 書き換えここまで（141行目：メニューバーデザインEND） */
+
+#menu li:hover ul.child {
+  display: block;               /* マウスを乗せたら表示 */
+}
+
+#menu li ul.child li a {
+  border-left: none;
+  border-top: 1px solid #ababab;
+  padding: 10px;
+}
+/* --- 141行目付近：メニューバーデザインEND --- */
+/*メニューバーデザインEND*/
+.category {
+  margin-top: 40px;
+}
+.category span{
+    float: left;
+    margin: 25px 0 35px 10px;
+    font-size: 1em;
+	color: #969696;    
+}
+.category a{
+	padding: 5px 5px;
+}
+.category a:hover{
+	background-color: #f5f5f5;
+}
+a {
+/*リンク下線消す*/
+text-decoration: none;
+}
+
+
+h1{
+font-size:120%; /* 文字サイズ大き目(24px,18pt相当) */
+font-weight:bold; /* 文字を太文字に */
+color:#000000; /* 文字の色を黒に */
+border:2px solid #ADD8E6;
+border-left:5px solid #0000FF;
+padding:3px 15px;
+margin-top:140px;
+}
+h2{
+    font-size: 1.2em;
+    /*青ライン*/
+    padding: .25em 0 .120em .75em;
+    border-left: 6px solid #ff0000;
+    border-bottom: 2px solid #ccc;
+    margin-top:140px;
+}
+.strong{
+    font-size: 1.45em;
+}
+table{
+ border-collapse: collapse;
+ border: 1px solid #ccc;
+}
+ th{ 
+ width: auto;
+ padding: 6px; 
+ background: -webkit-linear-gradient(top,#f36,#fff);
+ background: linear-gradient(to bottom,#c1c1c1,#e8e8e8);
+ border-left: 1px solid #ccc;
+ }
+td{
+ padding: 7px 7px;
+ }
+ /*ボタンのスタイル*/
+ .btn{
+     width:100px;
+     margin: 0 10px;
+     padding: 10px;
+     border: none;
+     font-size:16px;
+     border-radius: 5px;
+ }
+ /*ボタンにマウスが乗った時*/
+ .btn:hover{
+     opacity:0.7;
+ }
+ /*ボタンを押した瞬間*/
+ .btn:active{
+     color: #ccc;
+ }
+ .btn-send{
+    background: #4169E1;
+ }
+ .btn-clear{
+     background-color: #DDDDDD;
+ }
+ 
+ .commentbtn{
+ -webkit-border-radius: 57;
+  -moz-border-radius: 57;
+  border-radius: 5px;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 9px 9px 9px 7px;
+  text-decoration: none;     
+ }
+
+ .commentbtn :hover{
+  text-decoration: none;
+ }
+ 
+ .builcommentbtn {
+  background: #0098ff;
+
+}
+
+.builcommentbtn:hover {
+  background: #41bdff;
+}
+
+.toucommentbtn {
+  background: #e40000;
+}
+
+.toucommentbtn:hover {
+  background: #ff3e3e;
+}
+
+.fa{
+	margin-left: 7px;
+}
+
+h4{
+	position:relative;
+	padding-left:30px;
+	border-bottom:2px solid #333333;
+	font-weight: bold;
+	font-size: 1.1em;
+	line-height: 38px;
+}
+ 
+h4:before{
+	content:''; 
+	border-radius:30px;
+	-webkit-border-radius:30px;
+	-moz-border-radius:30px; 
+	height:12px; 
+	width:12px; 
+	display:block; 
+	position:absolute; 
+	top:14px; 
+	left:7px; 
+	background-color:#6B0CE8;
+	box-shadow: 0 0 2px 2px rgba(255,255,255,0.2) inset;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.50;
+	-khtml-opacity: 0.50;
+	opacity:0.50;
+	z-index: 1;
+}
+ 
+h4:after{
+	content:''; 
+	border-radius:30px;
+	-webkit-border-radius:30px;
+	-moz-border-radius:30px; 
+	height:15px; 
+	width:15px; 
+	display:block; 
+	position:absolute; 
+	top:7px; 
+	left:2px; 
+	background-color:#00A8FF;
+	box-shadow: 0 0 2px 2px rgba(255,255,255,0.2) inset
+}
+.hiduke{
+    color: #666666;
+}
+h5{
+    padding: .5em .75em;
+}
+/*buhin.cssトップに同じ値を指定してある buhin.css側はdt,dl*/
+.info dt{
+    font-style: italic;
+    font-size: 0.95em;
+    background-color: #d8d6d6;
+}
+.info dl{
+    padding-bottom: 1%;
+    background-color: #f0f0f0;
+    border-bottom: dotted;
+    border-width: 1px;
+}
+/*ここまで*/
+
+ /*団地検索フォーム*/
+#searchform2 {
+	position: relative;	
+}
+#keywords2	{
+	width: 200px;
+	height: 12px;
+	background: #999;
+	border: none;
+	padding: 8px;
+	color: #FFF;
+}
+#searchBtn2	{
+	position: absolute;
+	left: 216px;
+	bottom: 0;
+	height: 28px;
+}
+/*parts.phpとpartsregist.phpのセレクタ*/
+.danchiname{
+    font-size: 1.2em;
+}
+/**/
+.reset{
+    float: right;
+    padding: 2px 4px 2px 7px; 
+}
+.builimg{
+    width: auto;
+    height: auto;
+    max-width: 200px;
+    max-height: 200px;
+    margin-left: 3%;
+    vertical-align: top;
+    margin-top: 1%;
+}
+.builcmt{
+    display: inline-block;
+    margin-top: 1%;
+}
+.buildel{
+    vertical-align: bottom;
+    margin-left: 1.5%;
+}
+::-webkit-input-placeholder {
+  color: #e8e8e8;
+}
+::-moz-placeholder {
+  color: #e8e8e8; opacity: 1;
+}
+:-ms-input-placeholder {
+  color: #e8e8e8;
+}
+.number{
+    font-size: 0.8em;
+}
+
+ /*<div class="block">内のデザイン*/
+.block{
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+.block div{
+    margin: 0 auto;
+    width: 70%;
+    text-align: center;
+}
+.block .editcmt{
+    display: block;
+    margin: 3%  0  6% -60%;
+}
+.block dl{
+    text-align: left;
+    margin: 15px 0;
+        width: 90%;
+}
+.block dt{
+    font-weight: 600;
+    float: left;
+    clear: left;
+    width: 33%;
+}
+.block  dd input{
+    width: 65%;
+}
+.block .item{
+	width:63%;
+float:left;
+margin-left: 0;
+margin-bottom: 10px;
+}
+.block .item input{
+    width:73%;
+}
+.block select{
+    width: 32.5%;
+}
+/*新規登録　団地編集の必須と入力項目のデザイン*/
+.inner span{
+    color: white;
+    padding: 1px 6px;
+    margin-left: 5px;
+    font-size: 0.63em;
+    border-radius: 3px;
+}
+/*必須デザイン(赤)*/
+.block .required{
+    background-color: #f03939;        
+}
+/*入力箇所デザイン(緑)*/
+.block .location{
+    background-color: #29d42e;
+}
+/**/
+.registbtn {
+    background-color:#d2d2d2;
+    -moz-border-radius:7px;
+    -webkit-border-radius:7px;
+    border-radius:3px;
+    display:inline-block;
+    cursor:pointer;
+    color:#000000;
+    font-family:Arial;
+    font-size:15px;
+    padding:6px 16px;
+    text-decoration:none;
+    text-shadow:1px 1px 0px #eaeaea;
+}
+.registbtn:hover {
+    background-color:#dcdbdb;
+}
+.registbtn:active {
+    position:relative;
+    top:1px;
+}
+ /*<div class="block">ここまで*/
+
+#loader-bg{
+  display: none;;
+}
+
+/*レスポンシブのみ表示するハンバーガーメニュー(非表示)*/
+.drawer-toggle.drawer-hamburger{
+    display: none;
+}
+/*END*/
+
+/*管理者のみ閲覧可能*/
+.userhistory{
+    width: 285px;
+    margin-left: 20px;
+    float: left;
+}
+.userhistory span{
+	float: right;
+}
+/*partsregist.phpアップロードボタンの背景を透明にする*/
+#upbtn{
+background-color: transparent;
+}
+.cmtsub{
+  margin-left: 30px;
+}
+/*END*/
+
+/*読み込み中に背景が暗転して操作を受け付けなくする。*/
+#fullOverlay{
+  position: absolute;
+  left: -10px; top: -40px;
+  width: 102%; height: 135%;
+  background: rgba(255, 255, 255, 0.8);
+  display: none;
+  z-index: 100;
+}
+/*暗転中の読み込み中に表示させるクルクルローディング gif*/
+#loader{
+  display: none;
+  position: fixed;
+  left: 44%;
+  top: 42%;
+  z-index: 101;
+  padding: 30px;
+  background-color:#212121;
+  border-radius: 15px;
+}
+#loader .fa{
+  margin-left: 24%
+}
+#loader span{
+  color: white;
+}
+.fa-spinner{
+  color: #f7f7f7;
+
+}
+.cmtsub textarea {
+  /*iOSでinputのフォーカス時に画面がズームするのを防ぐ
+https://qiita.com/skwbr/items/b285cc312587c73a4812*/
+  font-size: 16px;
+  transform: scale(0.8);
+/*  END*/
+  margin-left: -40px;
+  margin-top: -20px;
+}
+h5{
+  background: #3B5998;
+  color: white;
+  padding:10px 10px;
+  display: block;
+  margin: 0 auto;
+  text-shadow: 0px 1px 1px #565656;
+  text-align: center;
+}
+dd .builcmt {
+  display: block;
+}
+dd .builimg {
+  display: block;   /* ← これが決定打 */
+}
+dd > a {
+  display: inline-block;
+}
+dd > a + a {
+  margin-left: 8px;
+}
+
+
+
+
+/*画面をスクロールすると追従してくるボタンをCSSだけで作る方法
+https://fukuro-press.com/css-fixed-button/*/
+/*partslist.phpで使ってる*/
+/*#top_scroll{
+  width: 90px;
+  height: 90px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  opacity: 0.6;
+}
+#top_scroll a{
+  position: relative;
+  display: block;
+  width: 90px;
+  height: 90px;
+  text-decoration: none;
+}
+#top_scroll a::before{
+  font-family: 'FontAwesome';
+  font-weight: 900;
+  content: '\f102';
+  font-size: 30px;
+  color: #3B5998;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: -40px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+}
+#top_scroll a::after{
+  content: 'PAGE TOP';
+  font-size: 13px;
+  color: #fff;
+  position: absolute;
+  top: 45px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: auto;
+  text-align: center;
+  color: #3B5998;
+}*/
+
+@media screen and (max-width: 480px) {
+   /* * {border: dotted 1px #FF6600;}*/
+    html {
+    
+    }
+    body {
+        margin: 0px;
+        min-width: 100%;
+    }
+    
+    #contener {
+        min-width: 10px;
+        width: 100%;
+    }
+    /*団地検索デザイン*/
+        #rogoimg {
+        width:100px;
+        height:35px;
+        display:block;
+        margin: 10px 140px 0px;
+    }
+    /*団地検索デザイン*/
+
+    /*リペアハウスロゴデザイン*/
+/*    #rogoimg {
+       	width:250px;
+       	height:65px;
+       	display:block;
+        margin: 0 auto;
+    }*/
+    /*リペアハウスロゴデザイン*/
+    #header {
+        width: 100%;
+        height: 45px;
+        border-bottom: solid 4px blue;
+    }
+    .menu {
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+    }
+    .category{
+        clear:both;
+        margin-bottom: -50px;
+    }
+    .category span{
+        margin: 0 0 0px 10px;
+        font-size: 0.9em;
+    }
+    .category a{
+	padding: 9px 0px;
+    }
+    .toulist {
+        width: 100%;
+    }
+    #footer {
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        margin-top: 35px;
+    }
+    h1 {
+        font-size: 125%;
+        margin-top: 145px;
+    }
+    .btn {
+        margin: 10px 30px;
+        font-size: 22px;
+        width: 110px;
+        height: 50px;
+        padding: 10px;
+    }
+    .danchiname{
+        font-size: 1.2em;
+    }
+    #search{
+       float: left;
+       margin-left: 10px;
+       margin-top: 33px;
+       margin-bottom: 25px;
+    }
+.commentbtn{
+    padding: 8px 9px 8px 7px;
+    margin-left: 5px;
+}
+#scroll {
+    box-sizing: border-box;
+    border-right: 1px solid #4f4d47;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+ /*<div class="block">内のデザイン*/
+.block{
+    width: 98%;
+}
+.block div{
+    width: 97%;
+ }
+ .block .editcmt{
+    margin-left: -30%;
+}
+ .block dl{
+    width: 94%;
+ }
+
+.block dd{
+    width: 98%
+}
+.block .item{
+    width: 106%;
+    float: none;
+}
+.block .item input{
+    width: 45%;
+}
+.block input{
+    width: 25%;
+    float: none;
+}
+ /*<div class="block">ここまで*/
+ 
+/*レスポンシブのみ表示するハンバーガーメニュー(表示)*/
+.drawer-toggle.drawer-hamburger{
+    display: block;
+}
+/*END*/
+#menu{
+    display:none;
+}
+nav.drawer-nav{
+    background-color: whitesmoke;
+}
+.drawer-nav .fa{
+    float: left;
+    margin-top: 9px;
+    padding-left: 15px;
+    font-size: 1.1em;
+    color: #4f4f4f;
+}
+.drawer-nav span{
+    display: block;
+    padding: 6px 0;
+    margin-left: 50px;
+}
+.drawer-nav a{
+    color: #2c2c2c;	
+}
+.drawer-nav li{
+    border-bottom: solid 1px #d6d6d6;
+    padding: 8px 0;
+}
+.drawer-nav li:first-child{
+    background-color: #313131;
+    margin: 0;
+    color:white;
+}
+/*(.fa-user-o)アカウント用webフォント*/
+.drawer-nav .fa-user-o{
+    color: white;   
+}
+/*END*/
+h2 .strong{
+    display: block;
+    margin-left: 50px;
+}
+h2 label{
+	margin-top: -25px;
+}
+#loader{
+  left: 30%;
+}
+.registbtn {
+  margin-left: 20px;
+}
+
+}
+
+
+/*END*/

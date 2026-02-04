@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+h1{
+	width: 70%;
+	margin: 0 auto;
+	margin-bottom: 50px;
+}
+#ratio{
+	margin: 50px auto;
+	width: 60%;
+	font-size: 0.9em;
+	text-align: center;
+}
+#ratio td{
+    border-right: 1px dotted #999;
+    border-bottom:1px dotted #999;
+    text-align: right;
+}
+#ratio td:first-child{
+	border-left: 1px solid #ccc;
+}
+.ratio td:nth-child(n+1){
+	background-color: #f9efef;
+}
+.ratio td:nth-child(n+4){
+	background-color: #ebf2ff;
+}
+.ratio2 td:nth-child(n+2){
+	background-color: #f9efef;
+}
+#ratio td:last-child{
+	color:red;
+    border-right: none;
+}
+#ratio td:nth-child(n+5){
+	background-color: #ebf2ff;
+}
+#ratio span{
+	display: block;
+}
+select{
+	float: right;
+	margin: 0 21% 15px;
+}
+
+@media screen and (max-width: 480px){
+h1{
+	margin-top: 40px !important; /*!importantを付ければ後からcssファイルが読み込まれ優先される*/
+	margin-bottom: -20px;
+	width: 85%;
+}
+#ratio{
+	width: 100%;
+}
+select{
+	margin: 0 10px 15px 0;
+}
+}
+

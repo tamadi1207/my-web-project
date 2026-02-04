@@ -1,0 +1,330 @@
+@charset "utf-8";
+/*---------------------------------
+	CommonCSS [初期化,定義]
+---------------------------------*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td { 
+	margin:0;padding:0;
+}
+ol,ul {
+	list-style:none;
+}
+img{border:0}
+/*---------------------------------
+	        Base CSS 
+---------------------------------*/
+a {
+	color:#666;
+}
+a:hover {
+	color:#999;
+	text-decoration:none;
+}
+/* clearfix */
+.clearfix:after { content:"."; display:block; clear:both; height:0; visibility:hidden; }
+.clearfix { display:inline-block; }
+
+/* for macIE \*/
+* html .clearfix { height:1%; }
+.clearfix { display:block; }
+
+body { 
+	font-size:12px; 
+	line-height:100%;
+	background:#fff;
+	color:#444;
+	font-family:"メイリオ", Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+}
+#container{
+		width:900px;
+		margin:10px auto;
+		position:relative;
+		line-height:120%;
+}
+h1{
+	font-size:18px;
+	color:#29537C;
+	margin:10px 0px 10px 0;
+	font-weight:normal;
+	border:1px solid #3D79B6;
+	border-bottom:3px solid #3D79B6;
+	padding:15px 15px;
+	text-shadow:1px 1px 0px #fff;
+	
+	background: rgb(255,255,255); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(255,255,255,1) 0%, rgba(243,243,243,1) 50%, rgba(237,237,237,1) 51%, rgba(255,255,255,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,1)), color-stop(50%,rgba(243,243,243,1)), color-stop(51%,rgba(237,237,237,1)), color-stop(100%,rgba(255,255,255,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(243,243,243,1) 50%,rgba(237,237,237,1) 51%,rgba(255,255,255,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(243,243,243,1) 50%,rgba(237,237,237,1) 51%,rgba(255,255,255,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(255,255,255,1) 0%,rgba(243,243,243,1) 50%,rgba(237,237,237,1) 51%,rgba(255,255,255,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(255,255,255,1) 0%,rgba(243,243,243,1) 50%,rgba(237,237,237,1) 51%,rgba(255,255,255,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+}
+h2{
+	font-size:18px;
+	margin:0px 3px 15px 0;
+	padding:2px 0 3px 0px ;
+	color:#444;
+	border-bottom:2px solid #444;
+	font-weight:normal;
+}
+h3 {
+	color:#222;
+	font-size:14px;
+	margin:15px 0;
+	padding:8px 10px;
+	background:#ddd;
+	font-weight:normal;
+	border-radius:4px;
+}
+p {
+	font-size:13px;
+	line-height:130%;
+	margin:10px 0;
+}
+#g-nav li a{
+	display:block;
+	width:180px;
+	height:20px;
+	text-align:center;
+	padding:12px 0px 5px;
+	margin:0 0 5px;
+	border:1px solid #666;
+	border-radius:6px;
+	text-decoration:none;
+	font-size:14px;
+	color:#333;
+	background:#efefef;
+		
+}
+#g-nav li a:hover,#g-nav li a#current{
+	background:#39C;
+	color:#fff;
+}
+.buttonArea a{
+	display:inline-block;
+	padding:3px 10px 1px;
+	margin:0 3px 0 0;
+	border:1px solid #555;
+	text-decoration:none;
+	border-radius:4px;
+	color:#333;
+	font-size:12px;
+}
+.buttonArea a:hover{
+	background:#efefef;	
+}
+.nodsp td,.nodsp a{
+	color:#aaa!important;	
+}
+#toPage{
+	position:absolute;
+	right:160px;
+	top:10px;
+}
+#toRegist{
+	position:absolute;
+	right:160px;
+	top:10px;
+}
+#toPHPINI{
+	position:absolute;
+	right:310px;
+	top:10px;
+}
+#logoutBtn{
+	position:absolute;
+	right:10px;
+	top:10px;
+}
+.linkBtn a{
+	padding:5px 0;
+	border:1px solid #aaa;
+	display:inline-block;
+	background:#fff;
+	color:#555;
+	border-radius:6px;
+	width:140px;
+	text-align:center;
+	text-decoration:none;
+}
+.linkBtn a:hover{
+	background:#ddd;
+	text-decoration:none;
+	color:#000;
+}
+.noDsp td{
+	color:#999!important;	
+}
+.newMark{
+	display:inline-block;
+	border:1px solid #F00;
+	padding:1px 4px;
+	font-size:11px;
+	line-height:100%;
+	background:#F00;
+	color:#fff;
+	box-shadow:1px 1px 1px #999;
+	border-radius:8px;
+	font-style:italic;
+}
+.submitBtn {
+	width:300px;
+	height:30px;
+	cursor:pointer;
+}
+/*---------------------------------
+        Pager style
+---------------------------------*/
+.pager{
+	text-align:right;
+	padding:10px 0;
+	clear:both;
+}
+/*ページャーボタン*/
+.pager a{
+    border: 1px solid #999;
+    border-radius: 5px 5px 5px 5px;
+    color: #333;
+    font-size: 12px;
+    padding: 3px 7px 2px;
+    text-decoration: none;
+	margin:0 1px;
+}
+
+/*現在のページのボタン*/
+.pager a.current{
+    background: #999;
+    border: 1px solid #999;
+    border-radius: 5px 5px 5px 5px;
+    color: #fff;
+    font-size: 12px;
+    padding: 3px 7px 2px;
+	margin:0 1px;
+    text-decoration: none;
+}
+.pager a:hover{
+    background:#999;
+    color: #fff;
+}
+
+.overPagerPattern{
+	padding:0 2px ;	
+}
+
+/*---------------------------------
+         /Pager style 
+---------------------------------*/
+
+/*---------------------------------
+         TABLE class 
+---------------------------------*/
+table.borderTable01{
+	border-collapse:collapse;
+	width:100%;
+	margin:10px 0 25px;
+}
+table.borderTable01 td,table.borderTable01 th{ 
+	font-size:	12px; 
+	border:1px solid #666;
+	color:#333;
+	padding:10px;
+	line-height:150%;
+	vertical-align:top;
+}
+table.borderTable01 th{
+	font-size:	13px; 
+	text-align:left;
+	font-weight:normal;
+	width:25%;
+	background:#efefef;
+}
+table.borderTable01 p{
+}
+table.borderTable01 td a{
+	font-size:14px;	
+}
+table.borderTable02,table.borderTable03{
+	border-collapse:collapse;
+	width:100%;
+	margin:10px 0 25px;
+}
+table.borderTable02 td,table.borderTable02 th,
+table.borderTable03 td,table.borderTable03 th
+{ 
+	font-size:12px; 
+	border:1px solid #666;
+	color:#333;
+	padding:5px 10px;
+	line-height:150%;
+	vertical-align:middle;
+}
+table.borderTable02 th,table.borderTable03 th{
+	font-size:	13px; 
+	text-align:left;
+	font-weight:normal;
+	background:#efefef;
+}
+
+table.borderTable02 .buttonArea{
+	width:33%;	
+}
+table.borderTable02 .ymd{
+	width:15%;	
+}
+table.borderTable02 .titleCel{
+	width:52%;	
+}
+
+table.borderTable03 .buttonArea{
+	width:10%;	
+}
+
+
+/*---------------------------------
+         /TABLE class 
+---------------------------------*/
+form input{
+	margin:3px 0;	
+}
+/*---------------------------------
+         class Library
+---------------------------------*/
+/* Margin・padding class */
+.m0{margin:0!important}.mt5{margin-top:5px!important}.mt10{margin-top:10px!important}.mt15{margin-top:15px!important}.mt20{margin-top:20px!important}.mb5{margin-bottom:5px!important}.mb10{margin-bottom:10px!important}.mb15{margin-bottom:15px!important}.mb20{margin-bottom:20px!important}.mr5{margin-right:5px!important}.mr10{margin-right:10px!important}.mr15{margin-right:15px!important}.mr20{margin-right:20px!important}.ml5{margin-left:5px!important}.ml10{margin-left:10px!important}.ml15{margin-left:15px!important}.ml20{margin-left:20px!important}.pt5{padding-top:5px!important}.pt10{padding-top:10px!important}.pt15{padding-top:15px!important}.pb5{padding-bottom:5px!important}.pb10{padding-bottom:10px!important}.pb15{padding-bottom:15px!important}.pr5{padding-right:5px!important}.pr10{padding-right:10px!important}.pr15{padding-right:15px!important}.pl5{padding-left:5px!important}.pl10{padding-left:10px!important}.pl15{padding-left:15px!important}
+.pall5{padding:5px!important}.pall10{padding:10px!important}.pall15{padding:15px!important}
+/* /Margin・padding class */
+
+.clear {clear:both;}
+.taR {text-align:right!important;}
+.taL {text-align:left!important;}
+.taC {text-align:center!important}
+.big {font-size:170%!important;line-height:130%}
+/*Font color*/
+.bold {font-weight:bold!important;}
+.col1 {	color:#FF6600!important;}
+.col2 {	color:#FF9933!important}
+.col3 {	color:#FF3300!important;}
+.col4 {	color:#D9006C!important;}
+.col5 {	color:#669999!important}
+.col6 {	color:#0000CC!important}
+.col7 {	color:#000099!important}
+.col8 {	color:#0066FF!important}
+.col9 {	color:#333333!important}
+.col10 {color:#666666!important}
+.col11 {color:#009900!important}
+.col12 {color:#009900!important}
+.col13 {color:#996633!important}
+.col14 {color:#FF66CC!important}
+.col15 {color:#669900!important;}
+.col16 {color:#00CC99!important;}
+.col17 {color:#fff!important;}
+.col18{color:#009966!important}
+.col19{color:#F00!important}
+.floL {float:left;margin-top:0 !important;}
+.floR {float:right;margin-top:0 !important;}
+.light {font-weight:normal}
+.floL img{margin-right:10px;}
+.floR img{margin-left:10px;}
+/*---------------------------------
+         /class Library
+---------------------------------*/

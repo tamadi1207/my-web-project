@@ -1,0 +1,322 @@
+@charset "UTF-8";
+
+.option{
+  -webkit-overflow-scrolling: touch
+}
+.entry{
+    background-color: #EEEEEE;
+    margin: 20px 0px;
+    padding: 10px 0px;
+}
+.entry .t-line , .photo{
+    margin: 0 auto;
+    table-layout: fixed;
+    font-size: 1em;
+    width: 1098px;
+}
+.select{
+    font-size: 1.0em;
+    width: 250px;
+}
+.entry th{ 
+    border-left: 6px solid #1E90FF;
+    background: linear-gradient(to bottom,#4689FF,#CCFFFF);
+    font-size: 1.0em;
+    padding: 16px 0px;
+    text-align: center;
+    width: 290px;
+ }
+#Langle span{
+   color:red;
+   font-size:0.85em;
+}
+ .t-line tr:nth-child(odd) td {  
+  background-color: #EAF6FD;  
+}
+.t-line tr:nth-child(even) td {  
+  background-color: #EFEFEF;  
+}
+ .text{
+     font-size: 1.7em;
+ }
+ /*部品登録ボタン:*/
+.submit {
+  background: #f03939;
+  background-image: -webkit-linear-gradient(top, #f03939, #ff4079);
+  background-image: -moz-linear-gradient(top, #f03939, #ff4079);
+  background-image: -ms-linear-gradient(top, #f03939, #ff4079);
+  background-image: -o-linear-gradient(top, #f03939, #ff4079);
+  background-image: linear-gradient(to bottom, #f03939, #ff4079);
+  border-radius: 5px;
+  text-shadow: 1px 1px 3px #424142;
+  color: #ffffff;
+  font-size: 1.1em;
+  padding: 13px 30px 13px 30px;
+  text-decoration: none;
+  margin: 2% 44% 4% 45%;
+}
+
+.submit:hover {
+  background: #f55f78;
+  background-image: -webkit-linear-gradient(top, #f55f78, #f75e5e);
+  background-image: -moz-linear-gradient(top, #f55f78, #f75e5e);
+  background-image: -ms-linear-gradient(top, #f55f78, #f75e5e);
+  background-image: -o-linear-gradient(top, #f55f78, #f75e5e);
+  background-image: linear-gradient(to bottom, #f55f78, #f75e5e);
+  text-decoration: none;
+}
+#box{
+    display: none;
+}
+
+/********画像一覧(チェックボックス)********/
+
+ul.image_list li {
+  /* liが横並びになるようにします。 */
+  display: inline-block;
+}
+ul.image_list li .image_box {
+  width: 200px;
+  height: 200px;
+  /* チェックボックスの親要素にrelativeを指定しておきます。 */
+  position: relative;
+}
+.image_box img.thumbnail {
+  width: 100%;
+  height: 100%;
+  /* 画像にカーソルを合わせたときに、
+  カーソルが指のマークになるようにします。 */
+  cursor: pointer;
+}
+.image_box img.thumbnail.checked {
+  /* チェックが入った状態だと、枠が表示されるようにします。 */
+  border: 6px solid blue;
+  /* 線をwidthとheightに含めるようにします。 */
+  box-sizing: border-box;
+}
+.image_box .disabled_checkbox {
+  /* チェックボックスの位置は絶対位置にします。 */
+  position: absolute;
+  /* チェックボックスは、親要素の右上から12pxの位置に配置します。 */
+  top: 12px;
+  right: 12px;
+  /* チェック前は非表示にしておきます。 */
+  display: none;
+  /* チェックボックスを大きくします。 */
+  transform: scale(2);
+  /* チェックボックスにカーソルを合わせたときに、
+  カーソルが指のマークになるようにします。 */
+  cursor: pointer;
+}
+.image_box img.thumbnail.checked + .disabled_checkbox {
+  /* 画像にcheckedクラスが指定されたときは、
+  チェックボックスの非表示を解除します。 */
+  display: block;
+}
+/********画像一覧END********/
+
+/*ここまで*/
+
+/*下枠寸法tableデザイン*/
+.frameimg{
+  margin: 15px 0px 5px 20px;
+  width: 175px;
+  margin-top: -30px;
+}
+.frameimg{
+  float: right;
+  margin-right: -60px;
+}
+.lowframe select{
+  width: 200px;
+}
+.lowframe #size2{
+  clear: both;
+  width: 220px;
+}
+.lowframe #size2 span{
+  display: inline;
+}
+.lowframe #size2 span input{
+    width: 50px;
+}
+.lowframe #size3 span input{
+    width: 50px;
+}
+.lowframe #airtight{
+  float: left;
+}
+/*ここまで*/
+
+.registbox{
+  clear: both;
+  display: block;
+  margin: 0 auto;
+  width: 97%;
+}
+/*画像アップロード内デザイン*/
+#upimg{
+  margin: 70px auto;
+  background-color: #EEEEEE;
+  clear: both;
+}
+#upimg div{
+  text-align: center;
+}
+#upinmg img{
+  max-width: 200px;
+}
+.imglist img{
+    max-width: 200px;
+}
+#upimg .cssimgcmt{
+  background-color: #f4f4f4;
+  text-align: left;
+  margin-left: 35px;
+  width: 280px;
+}
+/*錠前の投稿画像コメントのみ適用*/
+#upimg .cssimgcmtkey{
+  text-align: center;
+  background-color: #f4f4f4;
+}
+#upimg{
+  width: 100%;
+}
+#upimg .imglist{
+  width: 350px;
+  display:inline-block;
+}
+#upimg .delbtn{
+  margin: 5px 0 10px 0;
+}
+#upimg strong{
+  display: block;
+  text-align: right;
+}
+#result{
+  float: left;
+  margin-left: 43%;
+  margin-top: 20px;
+  font-size: 1.2em;
+}
+#upstr{
+  font-weight: bold;
+}
+#uplist{
+  margin-left: 0px;
+  display: block;
+}
+#uplist label{
+  margin-left: 14px;
+}
+.cmt{
+  font-size: 0.8em;
+}
+#firstBox8 section{
+  display: inline-block;
+}
+#firstBox8 span{
+  font-size: 0.7em
+}
+#firstBox9 section{
+  display: inline-block;
+}
+#firstBox9 span{
+  font-size: 0.7em
+}
+.photo td{
+  padding: 3px 3px;
+}
+.photo{
+     border: initial; 
+}
+
+
+
+@media screen and (max-width: 480px) {
+.registbox{
+    margin-top: 70px; 
+    width: 100%;
+}
+.registbox h2 label{
+    display: block;
+}
+.menu .user {
+    clear: both;
+}
+.entry table{
+    border: none;
+    width: 100%
+}
+.entry th{ 
+    border-left: none;
+    width: 140px;
+}
+.entry td{
+    width: 300px;
+}
+.t-line th{
+    display: block;
+    width: 366px;
+}
+.t-line td{
+  display:block;
+  width: 351px;
+}
+.res{
+    display: block;
+    width: 150px;
+}
+.res2{
+    display: inline-block;
+}
+.submit{
+    margin: 20px 95px;
+    padding: 13px 70px;
+}
+.number{
+  width: 75px;
+}
+.option{
+  -webkit-overflow-scrolling: touch
+}
+.frameimg{
+  float: left;
+  margin-top: 10px;
+}
+.lowframe #size2 span{
+  width: 250px;
+}
+#size3{
+  float: left;
+}
+.imglist img{
+    max-width: 200px;
+}
+#upimg{
+  display: block;
+  margin: 0 auto;
+}
+#upimg textarea{
+  margin-left: 33px;
+}
+#uplist label{
+  display: inline-block;
+}
+.entry .t-line , .photo{
+   width: 365px;
+}
+#result{
+  margin-left: 26%;
+}
+
+
+@media screen and (max-width: 480px) {
+/*左右の動きを止める*/
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+}
+
+}

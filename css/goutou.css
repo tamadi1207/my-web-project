@@ -1,0 +1,167 @@
+@charset "UTF-8";
+
+.toubox{
+    margin-top: 30px;
+    padding-bottom: 70px;
+    border: #ccc;
+    border-bottom: 2px solid #3498db;
+    background: #f0f0f0;
+}
+
+h3 {
+	padding: .50em 1em;
+	border-top: 2px solid #3498db;
+	background: -webkit-linear-gradient(top, #fff 0%, #f0f0f0 100%);
+	background: linear-gradient(to bottom, #fff 0%, #f0f0f0 100%);
+}
+#toulist{
+    display: inline-block;
+    width: 20%;
+    padding: 5px;
+    margin: 3px 0px 3px 9%;
+    text-align: center;
+}
+.builinfo{
+    width: 48%;
+    float: left;
+}
+.bldginfo{
+    width: 48%;
+    float: right;
+}
+.touhiduke{
+    font-size: 0.85em;
+    color: #DDDDDD;
+}
+/*棟リンクアニメーション*/
+.button {
+    display: inline-block;
+    width: 200px;
+    height: 54px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 54px;
+    outline: none;
+    font-size: 1.2em;
+}
+.button::before,
+.button::after {
+    position: absolute;
+    z-index: -1;
+    display: block;
+    content: '';
+}
+.button,
+.button::before,
+.button::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+}
+.button {
+    background-image: -webkit-linear-gradient(top, #1ab0ec, #1a92c2);
+    background-image: linear-gradient(to bottom, #00b6ff, #0676ea);
+    color: #fff;
+    border-radius: 10px;
+     	text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+}
+.button:hover {
+    background-image: -webkit-linear-gradient(top, #49c0f0, #2cafe3);
+    background-image: linear-gradient(to bottom, #7bd3f7, #1caff5);
+    border-radius: 10px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, .4);
+}
+.icon{
+    position: absolute;
+    padding-top: 2px;
+    padding-left: 26px;
+    color: white;
+}
+/*ここまで*/
+.builbox{
+   clear: both;
+   display: block;
+   margin: 0 auto;   
+   width: 97%
+}
+.builbox h2 label{
+    font-size: 1.5em;
+}
+
+/*iphone*/
+@media screen and (max-width: 480px) {
+.builbox{
+    margin-top: 70px;
+}
+.builbox h2 span{
+    display: block;
+}
+.info{
+    width: 100%;
+}
+.builinfo{
+    width: 99%;
+}
+.bldginfo{
+    width: 99%;
+}
+h3 {
+    text-align: center;
+    font-size: 1.5em;
+    padding: .10em 1em;
+}
+.toubox{
+    margin-top: 0px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+#toulist{
+    width: 35%;
+    margin: 20px 5% 0px 3%;
+    text-align: center;
+}
+/*棟リンクアニメーション*/
+.button {
+    display: inline-block;
+    width: 165px;
+    height: 50px;
+    text-align: center;
+    text-decoration: none;
+    line-height: 50px;
+    outline: none;
+    font-size: 1.0em;
+}
+.toubox{
+    padding-bottom: 50px;
+}
+#toulist{
+    margin-top: 0px;
+}
+.icon{
+    padding-left: 6px;
+    padding-top: 1px;
+}
+dt{
+    font-size: 0.5em;
+}
+}
+/* ==========================================================
+   PC・スマホ共通：.builcmt の改行設定
+   ========================================================== */
+.builcmt {
+    white-space: pre-wrap !important; /* 入力時の改行を反映 */
+    overflow-wrap: break-word !important; /* 長い単語を枠内で折る */
+    word-break: break-all !important;    /* 連続した英数字も端で折る */
+    display: block !important;
+}
+html, body {
+        overflow-x: hidden;
+        position: relative;
+        width: 100%;
+    }
+    .toubox, .info, .builinfo, .bldginfo {
+        width: 100% !important;
+        box-sizing: border-box; /* パディングを含めて100%にする */
+    }

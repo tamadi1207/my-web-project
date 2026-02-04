@@ -1,0 +1,115 @@
+@charset "UTF-8";
+table{
+  margin-top: 25px;
+  width: 882px;
+}
+th{
+  text-shadow: -1px 1px 0 rgba(255,255,255,1);
+}
+td{
+  text-align: center;
+  border-bottom: 1px dotted #999;
+  border-left: 1px solid #ccc;
+}
+.nextpage{
+  float: right;
+}
+.page{
+  display: inline-block;
+}
+.top{
+  margin-left: 343px;
+  margin-right: -400px
+}
+.prev{
+  margin-left: 425px;
+  margin-right: -400px;
+}
+.next{
+  margin: 30px 60px 30px 520px;
+}
+.pagebtn{
+  display: inline-block;
+  padding: 0px 9px;
+  margin-right: 4px;
+  border-radius: 3px;
+  border: solid 1px #c0c0c0;
+  background: #e9e9e9;
+  box-shadow: inset 0px 1px 0px rgba(255,255,255, .8), 0px 1px 3px rgba(0,0,0, .1);
+  font-size: .875em;
+  font-weight: bold;
+  text-decoration: none;
+  color: #717171;
+  text-shadow: 0px 1px 0px rgba(255,255,255, 1);
+}
+.pagebtn:hover{
+  background: #fefefe;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FEFEFE), to(#f0f0f0));
+  background: -moz-linear-gradient(0% 0% 270deg,#FEFEFE, #f0f0f0);
+}
+td .fa {
+  float: right;
+  margin-top: 4px;
+}
+#iconlist{
+  text-align: right;
+  margin: 20px 200px -20px 0px;
+}
+.icon{
+  color: #333333;
+}
+.icon2{
+  color: #0098ff;
+}
+.icon3{
+  color: #e40000;
+}
+ .buil{
+   text-align: left;
+   margin-right: 15px;
+ }
+ .listbox{
+   clear: both;
+   display: block;
+   margin: 100px auto 0 auto;
+   width: 75%;
+}
+/*全棟部品登録済アイコン色(シルバー)*/
+.fa-file-text{
+  color: #545454;
+}
+#listcmt{
+  float: left;
+}
+
+@media screen and (max-width: 480px){
+.listbox{
+   margin-top: -70px; 
+   width: 100%;
+}
+#iconlist{
+  margin-right: 10px;
+  font-size: 0.7em;
+}
+.nextpage{
+  float: none;
+}
+.page{
+  display: inline-block;
+  margin: 20px;
+}
+.top{
+  margin-left:42px;
+}
+.prev{
+  margin-left: 25px;
+  margin-right: -120px;
+}
+.next{
+  margin-left: 160px;
+}
+h1{
+  border-left: none;
+  text-align: center;
+}
+}

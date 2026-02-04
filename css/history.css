@@ -1,0 +1,126 @@
+@charset "UTF-8";
+
+.historybox{
+    clear: both;
+    margin-top: 130px;
+    border-radius: 5px;
+}
+.historybox > section{
+    width: 38.9%;
+    float: left;    
+    margin-left: 7%;
+    background-color: #f2f2f2;
+}
+.historybox h2{
+    border-left: 6px solid #3B5998;
+    width: 30%;
+    margin-left: 1%;
+}
+.historybox ul{
+    border-top: dotted 5px #b4b4b4;
+    border-width: 1px;
+    margin:  0;
+    padding: 5px 0 5px 80px;
+    color: #4d4d4d;
+}
+.historybox ul:first-child{
+    border-top: none;
+}
+.historybox li{
+    list-style: none;
+}
+.historybox ul span:nth-child(2){
+    margin-left: 35px;
+    font-weight: bold;
+}
+.historybox h5 > .fa{
+    margin-right: 10px;
+}
+.historyitem{
+    padding: 1% 0 3% 10%;
+    margin-bottom: -17px;
+}
+.historyitem li:first-child{
+    margin-left: 21px;
+}
+.historyitem span{
+    margin-left: -47px;
+    margin-right: 55px;
+    color:silver;
+}
+h5{
+  border-radius: 5px 5px 0 0;  
+  background: #3B5998;
+  color: white;
+  padding:10px 10px;
+  display: block;
+  margin: 0 auto;
+  text-shadow: 0px 1px 1px #565656;
+}
+/* history.css */
+
+/* 親要素の設定：背景を白にし、左右に線を引く */
+#partshistory, #clickhistory {
+    background-color: #ffffff !important;
+    padding-bottom: 0;
+    border-left: 1px solid #dcdcdc;  /* 左側の縦線 */
+    border-right: 1px solid #dcdcdc; /* 右側の縦線 */
+    box-sizing: border-box;
+}
+
+/* --- 1行目、3行目...（奇数）を「少し濃いめの灰色」にする --- */
+#partshistory ul:nth-of-type(odd),
+#clickhistory ul:nth-of-type(odd) {
+    background-color: #e6e6e6; /* ご希望の少し濃いめの灰色 */
+}
+
+/* --- 2行目、4行目...（偶数）を「白」にする --- */
+#partshistory ul:nth-of-type(even),
+#clickhistory ul:nth-of-type(even) {
+    background-color: #ffffff;
+}
+
+/* リストの区切り線（横線） */
+.historybox ul {
+    border-top: 1px solid #dcdcdc; /* 点線から薄い実線に変更して箱感を出す */
+    margin: 0;
+    padding: 10px 0 10px 80px;
+}
+
+/* 一番上の横線だけ消す（親のborderと重ならないように） */
+.historybox ul:first-of-type {
+    border-top: none;
+}
+
+/* 一番下の横線を追加して箱を閉じる */
+.historybox ul:last-of-type {
+    border-bottom: 1px solid #dcdcdc;
+}
+@media screen and (max-width: 480px) {
+.historybox > section{
+  width: 100%;
+  margin: auto;
+  margin-bottom: 20%;
+}
+.historybox ul{
+  padding-left: 55px;
+}
+h5{
+  border-radius: 0;
+  text-align: center;
+}
+}
+/* 4. 各ボタン（💬、地図）やラベル自体の上下の厚みを抑える */
+.count-bubble, .map-link, .meta-label {
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+    margin: 0 !important;
+}
+    .task-item-link {
+        padding-top: 13px !important;
+    }
+.action-buttons{
+    margin-top: -5px !important;
+}
+
+

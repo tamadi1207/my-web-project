@@ -1,0 +1,174 @@
+/* --- レイアウトの根幹：中央寄せ --- */
+#setting {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    padding: 30px 0 !important;
+    display: flex !important;
+    justify-content: center !important; /* 横方向中央 */
+    box-sizing: border-box !important;
+}
+
+/* 白いカード部分 */
+.setting-card {
+    width: 95% !important;
+    max-width: 600px !important;
+    background: #fff !important;
+    padding: 30px !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15) !important;
+    box-sizing: border-box !important;
+}
+
+/* タイトルの濃い線 */
+.setting-title {
+    display: flex !important;
+    align-items: center !important;
+    font-size: 1.4rem !important;
+    font-weight: bold !important;
+    border-bottom: 2px solid #333 !important; /* クッキリ濃く */
+    padding-bottom: 12px !important;
+    margin: 0 0 20px 0 !important;
+}
+
+.setting-title i {
+    margin-left: 10px !important;
+    color: #444 !important;
+}
+
+/* 項目の濃い線 */
+.setting-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 20px 0 !important;
+    border-bottom: 1px solid #777 !important; /* クッキリ濃く */
+}
+
+.setting-item label {
+    font-weight: bold !important;
+    color: #222 !important;
+}
+
+/* 保存ボタン：クッキリ */
+.setting-actions {
+    margin-top: 30px !important;
+    text-align: right !important;
+}
+
+.setting-btn-save {
+    /* 背景色：明るいグレー */
+    background-color: #e3e2e2 !important;
+    /* 文字色：濃いグレー */
+    color: #333 !important;
+    /* 枠線：細いグレー */
+    border: 1px solid #ccc !important;
+    
+    /* 角丸を少しだけ（8pxから4pxへ） */
+    border-radius: 4px !important;
+    
+    /* サイズを半分程度に（パディングを小さく、幅を自動に） */
+    padding: 6px 20px !important; 
+    width: auto !important;
+    min-width: 100px !important; /* 最低限の横幅を確保 */
+    
+    font-weight: bold !important;
+    font-size: 0.9rem !important; /* 文字サイズも少しコンパクトに */
+    cursor: pointer !important;
+    
+    /* 軽い影 */
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05) !important;
+    transition: all 0.2s ease !important;
+    display: inline-block !important;
+}
+
+/* ホバー時の反応 */
+.setting-btn-save:hover {
+    background-color: #e5e5e5 !important;
+    border-color: #bbb !important;
+}
+
+/* ホバー（マウスを乗せた時）の反応 */
+.setting-btn-save:hover {
+    background-color: #e5e5e5 !important;
+    border-color: #bbb !important;
+}
+/* ログアウト行のスタイル */
+.logout-row {
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+/* ログアウトのリンクボタン */
+.logout-link {
+    text-decoration: none !important;
+    color: #d9534f !important; /* 注意を引く薄い赤色 */
+    font-weight: bold !important;
+    padding: 8px 15px;
+    border: 1px solid #d9534f;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.logout-link:hover {
+    background-color: #d9534f !important;
+    color: #fff !important;
+}
+
+@media screen and (max-width: 480px) {
+    #setting {
+        padding: 15px 0 !important;
+    }
+
+    .setting-card {
+        width: 92% !important;
+        padding: 20px 15px !important;
+    }
+
+    .setting-item {
+        flex-direction: column !important;
+        /* スマホでも項目名は左寄せ、または中央にするかはお好みですが、
+           全体が右に寄らないよう一旦中央に配置します */
+        text-align: center !important;
+    }
+
+    .setting-item label {
+        margin-bottom: 15px !important;
+    }
+
+    /* セレクトボックス幅 80% */
+    .setting-selectbox {
+        width: 80% !important;
+        margin: 0 auto !important;
+        display: block !important;
+        padding: 10px !important;
+        border: 1px solid #555 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* ボタンエリアをスマホでも右寄せにする */
+    .setting-actions {
+        text-align: right !important; /* 中央寄せを解除して右寄せに */
+        margin-top: 25px !important;
+        width: 90% !important;      /* セレクトボックスの幅に合わせる場合は調整 */
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+
+    /* ボタン自体の調整 */
+    .setting-btn-save {
+        /* スマホで少し小さく感じる場合はここで微調整 */
+        padding: 6px 18px !important;
+    }
+    .logout-row {
+        flex-direction: column !important;
+        gap: 10px;
+    }
+    
+    .logout-link {
+        width: 80% !important; /* セレクトボックスの幅に合わせる */
+        margin: 0 auto;
+        text-align: center;
+    }
+}
