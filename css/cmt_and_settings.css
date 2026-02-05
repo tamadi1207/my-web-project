@@ -490,3 +490,77 @@ dl{ padding-bottom: 1%; background-color: #f0f0f0; border-bottom: dotted; border
     align-items: center;
     overflow: hidden;
 }
+
+
+
+
+/* --- 設定画面専用スタイル (settings.php用) --- */
+/* コンテナの横幅を広く、影を軽く */
+.settings-container {
+    max-width: 800px;
+    margin: 70px auto;
+    padding: 15px;
+    border: 1px solid #ccc;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+
+.settings-header h1 {
+    margin: 30px 0 30px 0;
+
+}
+
+/* 各設定項目の枠 */
+.settings-group {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 5px;
+}
+
+/* 境目をわかりやすくするための背景色（交互） */
+.settings-group.stripe {
+    background-color: #f9f9f9;
+}
+
+/* ラベル（極小） */
+.settings-label {
+    font-size: 17px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 2px;
+}
+
+/* 説明文（極小） */
+.settings-desc {
+    font-size: 12px;
+    color: #888;
+    margin: 0 0 5px 0;
+}
+
+/* セレクトボックス（極小・50%幅） */
+.settings-select-sm {
+    width: 50%;
+    padding: 2px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    font-size: 13px;
+    height: 30px;
+    background-color: #fcfcfc;
+}
+
+/* 保存ボタンの親要素（右寄せ） */
+.settings-footer {
+    text-align: right;
+    margin-top: 15px;
+}
+
+/* 保存ボタン自体の微調整 */
+.settings-btn {
+    padding: 8px 24px;
+    font-size: 15px;
+    height: auto;
+    cursor: pointer;
+    border-radius: 3px;
+}
