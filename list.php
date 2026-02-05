@@ -2,9 +2,7 @@
 require './db_info.php';
 require './cookie.php';
 $path= './';
-//カテゴリーメニューを非表示(index.phpとlist.phpのみ)
-$category= 'on';
-//
+//カテゴリーメニューを非表示(index.phpとlist.phpのみ)//
 
 // ログイン状態のチェック
 if ($cntid == 1) {

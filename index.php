@@ -29,7 +29,7 @@ if ($cntid == 1) {;
                 <h1>団地検索</h1>
 
 <?php    if($id === 'tamadi'){?>
-        <a href='./manager/userlist.php'>ユーザー履歴</a><br>
+        <a href='./manager/userlist.php'>ユーザー履歴ああああああああああ</a><br>
 <?php }?>
 
                 <form method="POST" action="list.php">

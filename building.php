@@ -9,7 +9,7 @@ $builedit2= array("<li><a href='{$path}danchihensyu/danchihensyu.php?code={$_GET
                  "<a href='{$path}touhensyu/newnum.php?code={$_GET['code']}&syubetu={$_GET['syubetu']}&name={$_GET['name']}&address={$_GET['address']}'><span>棟追加</span></a>",
                  "<a href='{$path}danchihensyu/buildelete.php?code={$_GET['code']}&syubetu={$_GET['syubetu']}&name={$_GET['name']}&address={$_GET['address']}'><span>団地削除</span></a></li>");
 
-// ログイン状態のチェック
+// ログイン状態のチェック/////
 if ($cntid == 1) {
 ?>
     <!DOCTYPE html>
@@ -59,7 +59,7 @@ $sql->execute([
 //$sql2 = $pdo->prepare("SELECT * FROM goutou WHERE code='$code' ORDER BY `goutouvar`,`goutou` ASC") or die ("失敗");
 //$sql2->execute();
 
-//アップロードした部品画像もcnt_upimgでカウントしているが使用していない
+//アップロードした部品画像もcnt_upimgでカウントしているが使用していない///
 $sql2 = $pdo->prepare("SELECT $goutb.code, $goutb.codeno,  $goutb.goutou, $goutb.goutouvar, $goutb.hiduke, 
 count(distinct(goutoucomment.`comment`)) as `cntcmt`, 
 count(distinct(goutoucomment.img)) as cntimg, 
