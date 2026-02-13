@@ -13,6 +13,20 @@ if ($cntid == 1) {
                 $projects = [];
             }
 
+
+// 1. DBから現在のデフォルトプロジェクト設定を取得
+$stmt_set = $pdo->prepare("SELECT default_project_id FROM db_user_settings WHERE user_name = :id LIMIT 1");
+$stmt_set->execute([':id' => $id]); // cookie等から取得したユーザーID
+$default_pid = $stmt_set->fetchColumn();
+
+// 2. 自動ジャンプの判定
+// !empty() を使うことで、値が ""（選択なし）、0、NULL の場合はジャンプしません
+if (!empty($default_pid) && !isset($_GET['change_project'])) {
+    header("Location: tasks.php?pid=" . urlencode($default_pid));
+    exit;
+}
+
+
 $builedit= array("<li class='aaa'><a href='{$path}danchihensyu/newbuil.php'>団地新規登録</a></li>");
 $builedit2= array("<li class='aaa'><a href='{$path}danchihensyu/newbuil.php'><span>団地新規登録</span></a></li>");
 
@@ -58,7 +72,7 @@ $builedit2= array("<li class='aaa'><a href='{$path}danchihensyu/newbuil.php'><sp
                 .project-list li a { 
                     text-decoration: none; 
                     color: #333; 
-                    font-size: 18px; 
+                    font-size: 18px;
                     font-weight: bold;
                     display: flex;          /* flexbox化 */
                     justify-content: space-between; /* 名前と件数を両端に */
@@ -112,7 +126,7 @@ $builedit2= array("<li class='aaa'><a href='{$path}danchihensyu/newbuil.php'><sp
                 <?php if (!empty($projects)): ?>
                     <?php foreach ($projects as $p): ?>
                         <li>
-                            <a href="tasks.php?pid=<?= urlencode($p['project_id']) ?>">
+                            <a href="tasks.php?pid=<?= urlencode($p['project_id']) ?>&pname=<?= urlencode($p['project_name']) ?>&pcount=<?= (int)$p['task_count'] ?>">
                                 <span><?= htmlspecialchars($p['project_name']) ?></span>
                                 <span class="count"><?= (int)$p['task_count'] ?></span>
                             </a>
