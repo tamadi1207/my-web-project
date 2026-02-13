@@ -36,7 +36,9 @@ if ($cntid == 1) {
 
 <?php require 'require/header.php';
 
-     $userid = $_COOKIE['ID'];
+
+     $userid = $id;
+
      $syubetu = isset($_GET['syubetu']) ? htmlspecialchars($_GET['syubetu']) : null;
      $name = isset($_GET['name']) ? htmlspecialchars($_GET['name']) : null;
      $code = isset($_GET['code']) ? htmlspecialchars($_GET['code']) : null;
@@ -71,13 +73,13 @@ while($kekka2= $sql4->fetch())
              }
 
               ?><div class="buildel"><?php             
-             if(htmlspecialchars($kekka2['name'] == 'hasumi') && ($_COOKIE['ID'] == 'hasumi'))
+             if(htmlspecialchars($kekka2['name'] == 'hasumi') && ($userid == 'hasumi'))
                  {
              if(!empty($kekka2['comment'])){ ?>
                  <a href='buildingcmtedit.php?syubetu=<?php print $syubetu;?>&code=<?php print $code;?>&codeno=<?php print $kekka2['codeno'];?>&goutou=<?php print $kekka2['goutou'];?>&name=<?php print $name;?>&address=<?php print $address;?>&no=<?php print $kekka2['no'];?>'>編集　</a>
              <?php }?>
                  <a href='buildingcmtdelete.php?syubetu=<?php print $syubetu;?>&code=<?php print $code;?>&codeno=<?php print $codeno;?>&goutou=<?php print $goutou;?>&goutouvar=<?php print $goutouvar;?>&name=<?php print $name;?>&address=<?php print $address;?>&no=<?php print $kekka2['no'];?>&comment2=<?php print $kekka2['comment'];?>'>削除</a><?php }
-             if(htmlspecialchars($kekka2['name'] !== 'hasumi') && ($_COOKIE['ID'] !== 'hasumi'))
+             if(htmlspecialchars($kekka2['name'] !== 'hasumi') && ($userid !== 'hasumi'))
                  {
              if(!empty($kekka2['comment'])){ ?>
                  <a href='buildingcmtedit.php?syubetu=<?php print $syubetu;?>&code=<?php print $code;?>&codeno=<?php print $kekka2['codeno'];?>&goutou=<?php print $kekka2['goutou'];?>&name=<?php print $name;?>&address=<?php print $address;?>&no=<?php print $kekka2['no'];?>'>編集　</a>

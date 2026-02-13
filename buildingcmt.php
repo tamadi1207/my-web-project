@@ -1,10 +1,20 @@
 <?php
 require './db_info.php';
-require './cookie.php';
-$goutouvar = isset($_GET['goutouvar']) ? htmlspecialchars($_GET['goutouvar']) : null;
+require './cookie.php'; // 安全な $id ($cntid) が作られます
+$goutouvar = isset($_GET['goutouvar']) ? htmlspecialchars($_GET['goutouvar'], ENT_QUOTES) : null;
 $path= './';
 
+// ログインチェック
 if ($cntid == 1) {
+    // ▼▼▼ 修正: クッキーではなくセッション由来の $id を使用 ▼▼▼
+    $userid = $id;
+
+    $code = isset($_GET['code']) ? htmlspecialchars($_GET['code'], ENT_QUOTES) : null;
+    $codeno = isset($_GET['codeno']) ? htmlspecialchars($_GET['codeno'], ENT_QUOTES) : null;
+    $goutou = isset($_GET['goutou']) ? htmlspecialchars($_GET['goutou'], ENT_QUOTES) : null;
+    $syubetu = isset($_GET['syubetu']) ? htmlspecialchars($_GET['syubetu'], ENT_QUOTES) : null;
+    $name = isset($_GET['name']) ? htmlspecialchars($_GET['name'], ENT_QUOTES) : null;
+    $address = isset($_GET['address']) ? htmlspecialchars($_GET['address'], ENT_QUOTES) : null;
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -19,15 +29,7 @@ if ($cntid == 1) {
     <div id="fullOverlay"></div>
     <div id="loader"></div>
 
-    <?php require './require/header.php'; 
-    $userid = $_COOKIE['ID'];
-    $code = isset($_GET['code']) ? htmlspecialchars($_GET['code']) : null;
-    $codeno = isset($_GET['codeno']) ? htmlspecialchars($_GET['codeno']) : null;
-    $goutou = isset($_GET['goutou']) ? htmlspecialchars($_GET['goutou']) : null;
-    $syubetu = isset($_GET['syubetu']) ? htmlspecialchars($_GET['syubetu']) : null;
-    $name = isset($_GET['name']) ? htmlspecialchars($_GET['name']) : null;
-    $address = isset($_GET['address']) ? htmlspecialchars($_GET['address']) : null;
-    ?>
+    <?php require './require/header.php'; ?>
 
     <div class="cmt-container">
         <div class="cmt-header">
@@ -65,25 +67,36 @@ if ($cntid == 1) {
         <?php } ?>
 
         <?php
-        if(isset($_POST['comment']) || !empty($_FILES['upload']['name'])){
-            $comment = isset($_POST['comment']) ? htmlspecialchars($_POST['comment']) : null;
-            $img = NULL;
-            if(!empty($_FILES['upload']['name'])){
-                $type = $_FILES['upload']['type'];
-                if($type == "image/jpeg" || $type == "image/png"){
-                    $ext = ($type == "image/jpeg") ? "jpg" : "png";
-                    $img = "$code-".time().".$ext";
-                    $folder = "./img/building/$code";
-                    if(!is_dir($folder)){ @mkdir($folder, 0777, true); }
-                    move_uploaded_file($_FILES["upload"]["tmp_name"], "$folder/$img");
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if(isset($_POST['comment']) || !empty($_FILES['upload']['name'])){
+                $comment = isset($_POST['comment']) ? $_POST['comment'] : ''; // DB保存時はhtmlspecialcharsしない（表示時にする）
+                $img = NULL;
+                
+                if(!empty($_FILES['upload']['name'])){
+                    $type = $_FILES['upload']['type'];
+                    if($type == "image/jpeg" || $type == "image/png"){
+                        $ext = ($type == "image/jpeg") ? "jpg" : "png";
+                        $img = "$code-".time().".$ext";
+                        $folder = "./img/building/$code";
+                        if(!is_dir($folder)){ @mkdir($folder, 0777, true); }
+                        move_uploaded_file($_FILES["upload"]["tmp_name"], "$folder/$img");
+                    }
                 }
-            }
-            if(!empty($comment) || !empty($img)){
-                $target_goutou = !empty($goutouvar) ? $goutouvar : $goutou;
-                $sql3 = $pdo->prepare("INSERT INTO goutoucomment (code,codeno,goutou,comment,type,name,img,hiduke) VALUES(?,?,?,?,?,?,?,now())");
-                $sql3->execute([$code, $codeno, $target_goutou, $comment, $typeid, $userid, $img]);
-                echo '<div style="text-align:center; padding:40px; font-weight:bold;">✅ 投稿しました。</div>';
-                echo '<script>setTimeout(function(){ location.href="./parts.php?code='.$code.'&codeno='.$codeno.'&name='.$name.'&address='.$address.'&goutou='.$goutou.'&goutouvar='.$goutouvar.'&syubetu='.$syubetu.'"; }, 1000);</script>';
+                
+                if(!empty($comment) || !empty($img)){
+                    $target_goutou = !empty($goutouvar) ? $goutouvar : $goutou;
+                    
+                    try {
+                        // プリペアドステートメント
+                        $sql3 = $pdo->prepare("INSERT INTO goutoucomment (code,codeno,goutou,comment,type,name,img,hiduke) VALUES(?,?,?,?,?,?,?,now())");
+                        $sql3->execute([$code, $codeno, $target_goutou, $comment, $typeid, $userid, $img]);
+                        
+                        echo '<div style="text-align:center; padding:40px; font-weight:bold;">✅ 投稿しました。</div>';
+                        echo '<script>setTimeout(function(){ location.href="./parts.php?code='.$code.'&codeno='.$codeno.'&name='.$name.'&address='.$address.'&goutou='.$goutou.'&goutouvar='.$goutouvar.'&syubetu='.$syubetu.'"; }, 1000);</script>';
+                    } catch (PDOException $e) {
+                        echo "エラーが発生しました。";
+                    }
+                }
             }
         }
         $pdo = NULL;
@@ -91,7 +104,6 @@ if ($cntid == 1) {
     </div>
 
 <script>
-// 1. 画像を選択した瞬間のプレビュー表示
 document.getElementById('fileInput').addEventListener('change', function(e) {
     const file = e.target.files[0];
     const preview = document.getElementById('imagePreview');
@@ -99,18 +111,14 @@ document.getElementById('fileInput').addEventListener('change', function(e) {
         const reader = new FileReader();
         reader.onload = function(e) {
             preview.src = e.target.result;
-            preview.style.display = 'block'; // 画像を表示
-            
-            // --- ここから追加：表示サイズを半分にする設定 ---
-            preview.style.width = "50%";     // 横幅を親要素の半分に
-            preview.style.height = "auto";    // アスペクト比を維持
-            // --------------------------------------------
+            preview.style.display = 'block';
+            preview.style.width = "50%";
+            preview.style.height = "auto";
         }
         reader.readAsDataURL(file);
     }
 });
 
-// 2. 投稿ボタン（check）が押された時の処理
 var check = async function() {
     var fileInput = document.getElementById('fileInput');
     var commentArea = document.querySelector('textarea[name="comment"]');
@@ -121,9 +129,7 @@ var check = async function() {
         return false;
     }
 
-    // --- ここで背景を暗くし、文字を出す ---
-    // jQueryを使っている場合
-    $('#fullOverlay').css('display', 'block'); // fadeInより確実に即座に表示
+    $('#fullOverlay').css('display', 'block');
     $('#loader').css('display', 'block').html("<span>送信中...</span>");
 
     if (fileInput.files.length > 0) {
@@ -140,7 +146,6 @@ var check = async function() {
 
             if (response.ok) {
                 const text = await response.text();
-                // 完了後は自動的に画面が変わるので消す必要はありません
                 const match = text.match(/location\.href\s*=\s*['"](.*?)['"]/);
                 if(match) window.location.href = match[1]; else document.body.innerHTML = text;
             }
@@ -150,7 +155,6 @@ var check = async function() {
     }
 };
 
-// 3. 画像リサイズ & 向き補正関数
 function resizeWithOrientation(file, maxWidth) {
     return new Promise((resolve) => {
         const img = new Image();
@@ -158,22 +162,17 @@ function resizeWithOrientation(file, maxWidth) {
             const canvas = document.createElement('canvas');
             let width = img.width;
             let height = img.height;
-
-            // 比率を維持してリサイズ
             if (width > maxWidth) {
                 height = Math.round(height * (maxWidth / width));
                 width = maxWidth;
             }
-
             canvas.width = width;
             canvas.height = height;
             const ctx = canvas.getContext('2d');
             ctx.drawImage(img, 0, 0, width, height);
-
-            // Blobに変換して返す
             canvas.toBlob((blob) => {
                 resolve(blob);
-            }, 'image/jpeg', 0.85); // 85%の画質で圧縮
+            }, 'image/jpeg', 0.85);
         };
         img.src = URL.createObjectURL(file);
     });

@@ -18,14 +18,22 @@ if ($cntid == 1) {
         $navi = isset($_POST['default_navi_app']) ? $_POST['default_navi_app'] : 'google';
 
         try {
-            $sql = "INSERT INTO db_user_settings (user_name, default_project_id, default_navi_app) 
+            // ▼▼▼ 修正箇所: 列名を navi_app に変更しました ▼▼▼
+            $sql = "INSERT INTO db_user_settings (user_name, default_project_id, navi_app) 
                     VALUES (:uid, :pid, :navi) 
-                    ON DUPLICATE KEY UPDATE default_project_id = :pid, default_navi_app = :navi";
+                    ON DUPLICATE KEY UPDATE default_project_id = :pid_u, navi_app = :navi_u";
             
             $stmt = $pdo->prepare($sql);
+            
+            // VALUES句用
+            $stmt->bindValue(':uid', $id, PDO::PARAM_STR); 
             $stmt->bindValue(':pid', $pid, PDO::PARAM_STR);
             $stmt->bindValue(':navi', $navi, PDO::PARAM_STR);
-            $stmt->bindValue(':uid', $id, PDO::PARAM_STR); 
+            
+            // UPDATE句用
+            $stmt->bindValue(':pid_u', $pid, PDO::PARAM_STR);
+            $stmt->bindValue(':navi_u', $navi, PDO::PARAM_STR);
+            
             $stmt->execute();
             
             sleep(2);
@@ -33,11 +41,12 @@ if ($cntid == 1) {
             exit();
 
         } catch (PDOException $e) {
-            $message = "<p style='color:red; font-size: 17px; margin-bottom:10px;'>保存失敗</p>";
+            // デバッグ用：エラーメッセージを表示
+            $message = "<p style='color:red; font-size: 17px; margin-bottom:10px;'>保存失敗: " . htmlspecialchars($e->getMessage(), ENT_QUOTES) . "</p>";
         }
     }
 
-    // プロジェクト一覧 & 現在の設定値取得 (既存維持)
+    // プロジェクト一覧取得 (既存維持)
     $projects = [];
     try {
         $stmt = $pdo->prepare("SELECT project_id, project_name FROM todoist_projects_cache WHERE name = :user ORDER BY project_name ASC");
@@ -45,15 +54,17 @@ if ($cntid == 1) {
         $projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {}
 
+    // 現在の設定値取得
     $current_default_pid = "";
     $current_navi = "google"; 
     try {
-        $stmt = $pdo->prepare("SELECT default_project_id, default_navi_app FROM db_user_settings WHERE user_name = :uid");
+        // ▼▼▼ 修正箇所: 読み込み時も navi_app に変更 ▼▼▼
+        $stmt = $pdo->prepare("SELECT default_project_id, navi_app FROM db_user_settings WHERE user_name = :uid");
         $stmt->execute([':uid' => $id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($row) { 
             $current_default_pid = $row['default_project_id']; 
-            $current_navi = $row['default_navi_app'];
+            $current_navi = $row['navi_app']; // ここも修正
         }
     } catch (PDOException $e) {}
 ?>
@@ -67,8 +78,6 @@ if ($cntid == 1) {
     <style>
         .btn-disabled { opacity: 0.6 !important; cursor: wait !important; }
         .success-msg { color: green; font-weight: bold; font-size: 17px; margin-bottom: 10px; display: none; }
-        
-        /* ログアウトセクションのデザイン */
         .logout-section { margin-top: 40px; border-top: 1px solid #eee; padding-top: 20px; }
         .logout-id-label { font-size: 13px; color: #888; margin-bottom: 10px; }
         .btn-logout { background: #e74c3c !important; color: white !important; padding: 5px 20px; text-decoration: none; display: inline-block; border-radius: 3px; font-weight: bold; border: none; cursor: pointer; }
@@ -77,20 +86,11 @@ if ($cntid == 1) {
 </head>
 
 <style>
-/* スッと上から表示するように動かす */
 @keyframes nurutto-down {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-30px); }
+    to { opacity: 1; transform: translateY(0); }
 }
-.settings-container {
-    animation: nurutto-down 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
+.settings-container { animation: nurutto-down 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 </style>
 
 <body>
@@ -104,7 +104,7 @@ if ($cntid == 1) {
             <form method='POST' action='' id="settings-form" onsubmit="return startSaving();">
                 <div class="settings-group">
                     <label class="settings-label">Todoistプロジェクト一覧のスキップ設定</label>
-                    <p class="settings-desc">プロジェクトを選択すると、プロジェクト一覧をスキップして直接タスクを表示します。「選択しない」の場合は一覧を表示します。</p>
+                    <p class="settings-desc">プロジェクトを選択すると、プロジェクト一覧をスキップしてタスク一覧を表示します。「選択しない」の場合はプロジェクト一覧を表示します。</p>
                     <select name="default_project_id" class="settings-select-sm">
                         <option value="">選択しない</option>
                         <?php foreach ($projects as $p): ?>
@@ -139,7 +139,6 @@ if ($cntid == 1) {
     </div>
 
     <script>
-    // ブラウザの「戻る」対策
     window.addEventListener('pageshow', (event) => {
         const btn = document.getElementById('save-btn');
         const msg = document.getElementById('js-message');
@@ -159,7 +158,6 @@ if ($cntid == 1) {
         return true;
     }
 
-    // ✅ ログアウトの念押しポップアップ
     function confirmLogout() {
         if (confirm("本当にログアウトしますか？")) {
             window.location.href = "<?php print $path;?>login/logout.php";

@@ -151,13 +151,13 @@ if ($cntid == 1) {
             // ▼▼▼ リンク先判定 ▼▼▼
             $jump_url = '';
             $disabled_class = '';
+            $is_goutou_match = false; // 初期化
             
             if ($t_db) {
-                $is_goutou_match = false;
-
-                // 正規表現: 数字 + ハイフン (1- など) を探す
-                if (preg_match('/([0-9０-９]+)[-−‐ー]/u', $content, $matches)) {
-                    $num_half = mb_convert_kana($matches[1], 'n'); // 半角
+                // 正規表現: 数字 + (ハイフン または "号棟") を探す
+                // 例: "1-205", "１−２０５", "1号棟", "１号棟"
+                if (preg_match('/([0-9０-９]+)([-−‐ー]|号棟)/u', $content, $matches)) {
+                    $num_half = mb_convert_kana($matches[1], 'n'); // 数字を半角に
 
                     // ★修正: DB検索を廃止し、code + 号棟番号(半角) で codeno を生成
                     $calc_codeno = $t_db['code'] . $num_half; 
